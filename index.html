@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉林吉创智联网络科技有限公司 | 智慧物流引领者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a', // 深蓝背景
+                            primary: '#0ea5e9', // 科技蓝
+                            accent: '#f97316', // 活力橙
+                            light: '#f1f5f9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 自定义动画样式 */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* 滚动入场动画基类 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 导航栏玻璃拟态 */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* 英雄区背景 */
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.6)), url('https://picsum.photos/id/449/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* 视差效果 */
+        }
+
+        /* 卡片悬停特效 */
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .loader-line {
+            width: 100%;
+            height: 3px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ddd;
+            margin: 0px auto;
+        }
+        
+        .loader-line:before {
+            content: "";
+            position: absolute;
+            left: -50%;
+            height: 3px;
+            width: 40%;
+            background-color: #f97316;
+            animation: lineAnim 1s linear infinite;
+        }
+
+        @keyframes lineAnim {
+            0% { left: -40%; }
+            50% { left: 20%; width: 80%; }
+            100% { left: 100%; width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <div class="bg-brand-accent text-white text-xs py-2 px-4 flex justify-between items-center">
+        <div class="container mx-auto flex justify-between">
+            <span><i class="fas fa-bullhorn mr-2"></i>最新公告：吉林吉创智联网络科技有限公司智能云仓系统 3.0 正式上线，全面提升分拣效率。</span>
+            <span class="hidden md:block">服务热线：16519257172</span>
+        </div>
+    </div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 top-8">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-brand-accent rounded-lg flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <div class="text-white">
+                    <h1 class="font-bold text-lg leading-tight">吉创智联网络 JICHUANGZHILIAN NET</h1>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 text-white text-sm font-medium">
+                <a href="#home" class="hover:text-brand-accent transition">首页</a>
+                <a href="#about" class="hover:text-brand-accent transition">关于我们</a>
+                <a href="#services" class="hover:text-brand-accent transition">核心业务</a>
+                <a href="#tech" class="hover:text-brand-accent transition">智慧科技</a>
+                <a href="#process" class="hover:text-brand-accent transition">服务流程</a>
+                <a href="#contact" class="hover:text-brand-accent transition">联系我们</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-block px-6 py-2 bg-white text-brand-dark font-bold rounded-full hover:bg-brand-accent hover:text-white transition duration-300 text-sm">
+                立即咨询
+            </a>
+            
+            <button class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header id="home" class="hero-bg h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center text-white mt-16">
+            <span class="inline-block py-1 px-3 border border-brand-accent/50 rounded-full text-brand-accent text-sm mb-4 tracking-wide reveal">智慧物流 · 链接未来</span>
+            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight reveal" style="transition-delay: 100ms;">
+                不仅是运输，<br>更是价值的传递。
+            </h2>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">
+                立足中国，辐射全国。我们利用大数据与AI技术，为您提供端到端的高效供应链解决方案。
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal" style="transition-delay: 300ms;">
+                <a href="#services" class="px-8 py-4 bg-brand-accent rounded-lg font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30">
+                    探索解决方案 <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg font-bold hover:bg-white/20 transition">
+                    联系业务专员
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <section class="py-10 bg-white relative -mt-10 z-20 shadow-xl rounded-t-3xl mx-4 md:mx-10">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-100">
+            <div class="reveal">
+                <div class="text-4xl font-bold text-brand-dark mb-2 counter" data-target="98">0</div>
+                <div class="text-gray-500 text-sm">城市覆盖率 (%)</div>
+            </div>
+            <div class="reveal" style="transition-delay: 100ms;">
+                <div class="text-4xl font-bold text-brand-primary mb-2 counter" data-target="5000">0</div>
+                <div class="text-gray-500 text-sm">日均处理订单 (+)</div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <div class="text-4xl font-bold text-brand-dark mb-2 counter" data-target="24">0</div>
+                <div class="text-gray-500 text-sm">小时极速响应</div>
+            </div>
+            <div class="reveal" style="transition-delay: 300ms;">
+                <div class="text-4xl font-bold text-brand-accent mb-2 counter" data-target="100">0</div>
+                <div class="text-gray-500 text-sm">安全送达率 (%)</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative reveal">
+                    <img src="https://picsum.photos/id/60/800/600" alt="公司环境" class="rounded-2xl shadow-2xl z-10 relative">
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-brand-primary/10 rounded-full z-0 blur-3xl"></div>
+                    <div class="absolute -top-10 -left-10 w-48 h-48 bg-brand-accent/10 rounded-full z-0 blur-3xl"></div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h3 class="text-brand-primary font-bold tracking-wider uppercase mb-2">关于吉林吉创智联网络科技有限公司</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6">扎根中国，以智慧重新定义物流速度</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        吉林吉创智联网络科技有限公司，总部位于中国。作为一家新兴的智慧物流科技企业，我们不仅仅是一家运输公司，更是供应链优化的设计者。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        我们致力于将互联网技术与传统物流深度融合，通过自研的 TMS (运输管理系统) 和 WMS (仓储管理系统)，为客户提供可视化、可控化、智能化的物流服务体验。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> 智能化仓储布局</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> 实时物流追踪系统</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> 绿色环保包装解决方案</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">全链路物流解决方案</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">从仓储到配送，从干线到末端，我们提供一站式无缝衔接的服务。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card p-8 bg-gray-50 rounded-2xl border border-gray-100 transition-all duration-300 reveal">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-truck-moving"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">干线运输</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        覆盖全国主要城市的干线网络，提供整车、零担运输服务，准时率高达99%。
+                    </p>
+                    <a href="#" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="service-card p-8 bg-gray-50 rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">智能云仓</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        多地分仓，就近发货。自动化分拣设备与WMS系统结合，订单处理零误差。
+                    </p>
+                    <a href="#" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="service-card p-8 bg-gray-50 rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">城配专家</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        针对最后一公里的配送痛点，提供新能源车队配送，深入社区与乡镇。
+                    </p>
+                    <a href="#" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="service-card p-8 bg-gray-50 rounded-2xl border border-gray-100 transition-all duration-300 reveal">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">冷链物流</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        全程温控监控，保障中国农特产品新鲜直达全国餐桌。
+                    </p>
+                    <a href="#" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="service-card p-8 bg-gray-50 rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">供应链金融</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        依托货物流转数据，为中小企业提供灵活的资金周转解决方案。
+                    </p>
+                    <a href="#" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="service-card p-8 bg-brand-dark rounded-2xl border border-brand-dark transition-all duration-300 reveal text-white" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-white/10 text-white rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">定制化服务</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        针对特殊货物或复杂需求，提供项目制专属物流策划方案。
+                    </p>
+                    <a href="#contact" class="text-white text-sm font-semibold hover:underline">联系定制 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-primary text-white overflow-hidden">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-2/3 reveal">
+                <h3 class="text-2xl font-bold mb-2">中国农特产品上行计划</h3>
+                <p class="text-blue-100 opacity-90">吉林吉创智联网络科技有限公司特别推出“助农专线”，大幅降低农产品物流成本，助力乡村振兴。</p>
+            </div>
+            <div class="mt-6 md:mt-0 md:w-1/3 flex justify-end reveal">
+                <a href="#contact" class="px-6 py-3 bg-white text-brand-primary font-bold rounded-lg hover:bg-gray-100 transition">申请合作</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="py-20 bg-gray-900 text-white relative">
+        <img src="https://picsum.photos/id/4/1920/1080" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="tech bg">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-wider">TECHNOLOGY</span>
+                <h2 class="text-3xl font-bold mt-2">智慧大脑驱动</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <img src="https://picsum.photos/id/201/800/500" alt="数据中心" class="rounded-lg shadow-lg border border-gray-700">
+                </div>
+                <div class="space-y-8 reveal">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0 text-brand-accent">
+                            <i class="fas fa-satellite-dish"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">GPS/北斗双模定位</h4>
+                            <p class="text-gray-400 text-sm">车辆位置每15秒更新一次，异常停留自动报警，确保货物安全无忧。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0 text-brand-accent">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">AI 智能调度算法</h4>
+                            <p class="text-gray-400 text-sm">根据路况、天气、订单量自动规划最优路线，运输效率提升30%。</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0 text-brand-accent">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">透明化客户端</h4>
+                            <p class="text-gray-400 text-sm">客户可通过微信小程序实时查看货物状态、签收电子回单。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-brand-dark">标准化作业流程</h2>
+                <p class="text-gray-500 mt-2">简单四步，货物无忧</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gray-200 -z-1"></div>
+
+                <div class="text-center bg-white reveal">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-6">
+                        <i class="fas fa-file-signature text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">1. 预约下单</h4>
+                    <p class="text-gray-500 text-sm px-4">电话或线上系统下单，客服10分钟内确认需求。</p>
+                </div>
+                
+                <div class="text-center bg-white reveal" style="transition-delay: 100ms;">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-6">
+                        <i class="fas fa-box-open text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">2. 上门揽收</h4>
+                    <p class="text-gray-500 text-sm px-4">专业车队按时上门，现场核对、打包、贴单。</p>
+                </div>
+
+                <div class="text-center bg-white reveal" style="transition-delay: 200ms;">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-6">
+                        <i class="fas fa-road text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">3. 极速运输</h4>
+                    <p class="text-gray-500 text-sm px-4">全程可视，节点自动汇报，异常情况主动预警。</p>
+                </div>
+
+                <div class="text-center bg-white reveal" style="transition-delay: 300ms;">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-white shadow-lg mb-6">
+                        <i class="fas fa-smile text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">4. 签收评价</h4>
+                    <p class="text-gray-500 text-sm px-4">送货上门，电子签收，服务评价闭环。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl">
+                <div class="bg-brand-dark p-12 text-white flex flex-col justify-center reveal">
+                    <h3 class="text-2xl font-bold mb-6 text-brand-accent">安全承诺</h3>
+                    <p class="mb-4 text-gray-300">我们深知每一份托付背后的重量。铭诚鑫杰为您提供全额货物保险，一旦发生货损，先行赔付。</p>
+                    <p class="mb-8 text-gray-300">所有司机经过严格背景审查与安全培训，所有车辆配备 ADAS 驾驶辅助系统。</p>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-shield-alt mr-2 text-green-400"></i> 全程视频监控</li>
+                        <li><i class="fas fa-shield-alt mr-2 text-green-400"></i> 封条防盗机制</li>
+                    </ul>
+                </div>
+                <div class="h-64 md:h-auto reveal">
+                    <img src="https://picsum.photos/id/195/800/800" alt="安全运输" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl mt-8">
+                <div class="h-64 md:h-auto order-2 md:order-1 reveal">
+                    <img src="https://picsum.photos/id/384/800/800" alt="成本优化" class="w-full h-full object-cover">
+                </div>
+                <div class="bg-white p-12 flex flex-col justify-center order-1 md:order-2 reveal">
+                    <h3 class="text-2xl font-bold mb-6 text-brand-primary">成本更优</h3>
+                    <p class="mb-4 text-gray-600">通过智能拼车（Carpooling）技术，我们将空驶率降低了 40%，直接将节省的成本返还给客户。</p>
+                    <p class="mb-8 text-gray-600">透明报价体系，无任何隐形收费。大客户签约更享月结账期与专属折扣。</p>
+                    <a href="#contact" class="text-brand-dark font-bold underline">获取报价方案</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 text-sm mb-8">深受以下行业伙伴信赖</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="fab fa-aws text-5xl hover:text-brand-primary transition"></i>
+                <i class="fab fa-dhl text-5xl hover:text-brand-primary transition"></i>
+                <i class="fab fa-fedex text-5xl hover:text-brand-primary transition"></i>
+                <i class="fab fa-ups text-5xl hover:text-brand-primary transition"></i>
+                <i class="fab fa-alibaba text-5xl hover:text-brand-primary transition"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center text-brand-dark mb-12 reveal">常见问题解答</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-accent mr-2"></i> 如何查询我的货物位置？</h4>
+                    <p class="text-gray-600">您可以通过我们官网右上角的“订单查询”入口，输入您的运单号即可实时查看。或者关注我们的微信公众号进行绑定查询。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-accent mr-2"></i> 支持哪些支付方式？</h4>
+                    <p class="text-gray-600">我们支持微信支付、支付宝、对公转账以及货到付款（COD）服务。月结客户请联系销售经理开通权限。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-accent mr-2"></i> 发货有禁运品限制吗？</h4>
+                    <p class="text-gray-600">是的，我们严格遵守国家法律法规。易燃易爆、腐蚀性化学品、管制刀具等违禁品概不承运。具体请咨询客服。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-brand-primary relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-dark/20 pattern-grid-lg opacity-10"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">准备好优化您的供应链了吗？</h2>
+            <p class="text-xl opacity-90 mb-10">联系吉林吉创智联网络科技有限公司，体验高效、智能的物流服务。</p>
+            <a href="#contact" class="inline-block px-10 py-4 bg-white text-brand-primary font-bold rounded-full shadow-xl hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                免费获取物流方案
+            </a>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-brand-dark text-gray-400 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <h3 class="text-white text-2xl font-bold mb-6">吉林吉创智联网络科技有限公司</h3>
+                    <p class="mb-6 text-sm leading-relaxed">
+                        作为中国领先的智慧物流企业，我们始终坚持“客户至上，科技驱动”的理念，为每一位客户提供值得信赖的物流服务。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-douyin"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">快速链接</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" class="hover:text-white transition">首页</a></li>
+                        <li><a href="#about" class="hover:text-white transition">关于我们</a></li>
+                        <li><a href="#services" class="hover:text-white transition">物流服务</a></li>
+                        <li><a href="#" class="hover:text-white transition">新闻动态</a></li>
+                        <li><a href="#" class="hover:text-white transition">招贤纳士</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">联系方式</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-brand-accent"></i>
+                            <span>通化市通化开发区经开环路1-1号A5栋402室</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-brand-accent"></i>
+                            <a href="mailto:contact@jichuangzhiliannet.asia" class="hover:text-white transition">contact@jichuangzhiliannet.asia</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-brand-accent"></i>
+                            <a href="tel:16519257172" class="hover:text-white transition text-lg font-bold">16519257172</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">在线留言</h4>
+                    <form onsubmit="event.preventDefault(); alert('感谢您的留言，我们会尽快联系您！');" class="space-y-3">
+                        <input type="text" placeholder="您的称呼" class="w-full bg-gray-800 border-none rounded py-3 px-4 text-white focus:ring-2 focus:ring-brand-accent outline-none">
+                        <input type="text" placeholder="联系电话" class="w-full bg-gray-800 border-none rounded py-3 px-4 text-white focus:ring-2 focus:ring-brand-accent outline-none">
+                        <textarea placeholder="需求描述" rows="3" class="w-full bg-gray-800 border-none rounded py-3 px-4 text-white focus:ring-2 focus:ring-brand-accent outline-none"></textarea>
+                        <button type="submit" class="w-full bg-brand-accent text-white font-bold py-3 rounded hover:bg-orange-600 transition">发送留言</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2024 吉林吉创智联网络科技有限公司 版权所有</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-white">隐私政策</a>
+                    <a href="#" class="hover:text-white">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" id="backToTop" class="fixed bottom-8 right-8 bg-brand-accent text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform translate-y-20 transition-all duration-300 z-40 hover:bg-brand-primary">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // 1. 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-4');
+                backToTop.classList.remove('translate-y-20');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-4');
+                backToTop.classList.add('translate-y-20');
+            }
+        });
+
+        // 2. 滚动显示动画 (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // 如果是数字计数器，且未执行过动画
+                    if (entry.target.querySelector('.counter') && !entry.target.dataset.counted) {
+                        startCounters(entry.target);
+                        entry.target.dataset.counted = true;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 3. 数字滚动逻辑
+        function startCounters(section) {
+            const counters = section.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2秒
+                const step = target / (duration / 16); 
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        }
+        
+        // 4. 移动端菜单切换
+        const menuBtn = document.querySelector('.fa-bars').parentElement;
+        // 这里只是简单示例，实际生产环境建议用更完善的移动端菜单逻辑
+        menuBtn.addEventListener('click', () => {
+            alert('移动端菜单点击 (此处可扩展侧边栏逻辑)');
+        });
+
+    </script>
+</body>
+</html>
